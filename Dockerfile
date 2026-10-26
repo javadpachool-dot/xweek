@@ -9,7 +9,8 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends python3 make g++ ca-certificates \
  && rm -rf /var/lib/apt/lists/*
 COPY package.json ./
-RUN npm install --no-audit --no-fund
+RUN npm install -g npm@11.6.2 \
+ && npm install --no-audit --no-fund
 COPY . .
 RUN npm run build && npm prune --omit=dev
 
